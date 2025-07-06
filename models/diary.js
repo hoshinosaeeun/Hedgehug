@@ -1,14 +1,19 @@
 const mongoose = require("mongoose");
 
-const diarySchema = new mongoose.Schema({
-  user_id: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
+const diarySchema = new mongoose.Schema(
+  {
+    user_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    date: { type: Date, required: true },
+    content: { type: String, required: true },
+    emotion: { type: String, default: null },
   },
-  date: { type: Date, required: true },
-  content: String,
-  emotion: String,
-});
+  {
+    timestamps: true,
+  }
+);
 
 module.exports = mongoose.model("Diary", diarySchema);
