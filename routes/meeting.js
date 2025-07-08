@@ -6,8 +6,8 @@ const Meeting = require("../models/Meeting");
 const UserMeeting = require("../models/UserMeeting");
 
 router.get("/challenges", async (req, res) => {
-  const challenges = await Meeting.find({ type: "challenge" });
-  res.json(challenges);
+  const meetings = await Meeting.find({  type: { $in: ["challenge", "offline"] } });
+  res.json(meetings);
 });
 
 router.post("/offline", async (req, res) => {
